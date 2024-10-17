@@ -19,12 +19,7 @@ builder.Services.AddDbContext<TakDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("TAK"));
 });
 // Add services to the container.
-builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
-    .AddMicrosoftIdentityWebApp(options =>
-    {
-        builder.Configuration.Bind("AzureAd", options);
-        options.ResponseType = "code"; // Explicitly set the ResponseType to "code"
-    });
+
 
 builder.Services.Configure<CookieAuthenticationOptions>(CookieAuthenticationDefaults.AuthenticationScheme, options =>
 {
