@@ -1,0 +1,16 @@
+{
+  "name": "takam",
+  "version": "1.0.0",
+  "description": "**Team Awareness Kit (TAK)** > \"TAK is a smart device geospatial infrastructure and situational awareness app. It allows for precision targeting, surrounding land formation intelligence, situational awareness, navigation, and data sharing. It enables users to navigate using GPS and provides geospatial map data overlaid with real-time situational awareness of ongoing events.",
+  "main": "TAK Access Manager/TAK Access Manager/wwwroot/js/Index.js",
+  "scripts": {
+    "start": "node \"TAK Access Manager/TAK Access Manager/wwwroot/js/Index.js\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jquery": "^3.7.1",
+    "jsdom": "^25.0.1"
+  }
+}

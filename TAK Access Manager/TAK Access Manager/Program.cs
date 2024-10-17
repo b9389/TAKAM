@@ -9,15 +9,28 @@ using TAK_Access_Manager.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
+// Ensure configuration includes User Secrets
+builder.Configuration.AddUserSecrets<Program>(optional: true);
+
+// Add services to the container.
+builder.Services.AddDbContext<TakDbContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("TAK"));
+});
 // Add services to the container.
 builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
-    .AddMicrosoftIdentityWebApp(builder.Configuration.GetSection("AzureAd"));
-
+    .AddMicrosoftIdentityWebApp(options =>
+    {
+        builder.Configuration.Bind("AzureAd", options);
+        options.ResponseType = "code"; // Explicitly set the ResponseType to "code"
+    });
 
 builder.Services.Configure<CookieAuthenticationOptions>(CookieAuthenticationDefaults.AuthenticationScheme, options =>
 {
     options.AccessDeniedPath = new PathString("/Home/AccessDenied");
 });
+
 
 
 builder.Services.AddControllersWithViews(options =>
